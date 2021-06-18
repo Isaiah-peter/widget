@@ -19,14 +19,31 @@ export const Search = () => {
             })
             setResults(data.query.search)
           }
-          if(term){
+           
+          if(term && !results.length){
             search()
+          }else{
+            const timeOutId = setTimeout(()=>{ if(term){
+              search()
+            }}, 1000)
+
+            return () => {
+              clearTimeout(timeOutId)
+            }
           }
+
     },[term])
 
     const renderResult = results.map(({title, snippet,pageid})=>{
         return(
             <div key={pageid} className='item'>
+              <div className='right floated content'>
+                <a 
+                className='ui button'
+                href={`https://en.wikipedia.org?curid=${pageid}`}
+                >go
+                </a>
+              </div>
                 <div className='content'>
                   <div className='header'>
                       {title}
