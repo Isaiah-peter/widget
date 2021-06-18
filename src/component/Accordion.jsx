@@ -29,7 +29,6 @@ export const Accordion = ({items}) =>{
     return(
         <div className='ui styled accordion'>
             {renderItems}
-         
         </div>
     )
 }
